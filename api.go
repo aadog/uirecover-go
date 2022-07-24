@@ -1,4 +1,4 @@
-package uirecover_go
+package uirecover
 
 import (
 	"github.com/gookit/config/v2"
