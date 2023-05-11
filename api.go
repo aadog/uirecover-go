@@ -1,7 +1,6 @@
 package uirecover
 
 import (
-	"github.com/gookit/config/v2"
 	"github.com/ying32/govcl/vcl"
 	"strings"
 	"time"
@@ -12,6 +11,18 @@ func UseConfigOrDefault(mconfig *config.Config) *config.Config {
 		return config.Default()
 	}
 	return mconfig
+}
+
+func TEdit(config *config.Config, ui *vcl.TEdit, key string, defVal ...string) {
+	cfg := UseConfigOrDefault(config)
+	defer func() {
+		cfg.Set(key, ui.Text())
+	}()
+	v := cfg.String(key, defVal...)
+	ui.SetText(v)
+	ui.SetOnChange(func(sender vcl.IObject) {
+		cfg.Set(key, ui.Text())
+	})
 }
 
 func TLabeledEdit(config *config.Config, ui *vcl.TLabeledEdit, key string, defVal ...string) {
