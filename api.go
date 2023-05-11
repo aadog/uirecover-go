@@ -1,6 +1,7 @@
 package uirecover
 
 import (
+	"github.com/gookit/config/v2"
 	"github.com/ying32/govcl/vcl"
 	"strings"
 	"time"
